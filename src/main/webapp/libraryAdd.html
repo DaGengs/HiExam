@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">题库管理</a>
+        <a>
+          <cite>新增题库</cite></a>
+      </span>
+    <a style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
+</div>
+<div class="x-body layui-anim layui-anim-up">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label for="subj_name" class="layui-form-label">
+                题库名称
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="subj_name" name="subj_name" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span> 必填字段，请填写题库名称
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="info" class="layui-form-label">
+                题库说明
+            </label>
+            <div class="layui-input-inline" style="width: 380px;">
+                <textarea id="info" name="info" placeholder="请输入题库说明" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item" style="margin-left: 150px">
+            <button  class="layui-btn layui-btn-normal" lay-filter="add" lay-submit="">
+                增加
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+
+        form.on('submit(add)', function(data){
+            var subject = data.field;
+            $.ajax({
+                url: "subjectAdd.do",
+                type: "post",
+                contentType : "application/json",
+                data: JSON.stringify(subject),
+                success: function (data) {
+                    if (data.code == 0) {
+                        layer.msg(data.message, {icon: 6});
+                    } else {
+                        layer.msg(data.message, {icon: 5});
+                    }
+                }
+            })
+            return false;
+        });
+
+
+    });
+</script>
+</body>
+</html>

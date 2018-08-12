@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--约束文件 --><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.iruier.dao.StudentMapper">
+    <insert id="save" parameterType="Student">
+        insert into t_student(stu_no, stu_idNumber, stu_name, stu_gender, stu_phone, class_no, status) values(#{stu_no}, #{stu_idNumber}, #{stu_name}, #{stu_gender}, #{stu_phone}, #{class_no}, 1)
+    </insert>
+
+    <update id="update" parameterType="Student">
+        update t_student
+        <set>
+            <if test="stu_idNumber != null">
+                stu_idNumber = #{stu_idNumber}
+            </if>
+            <if test="stu_name != null">
+                stu_name = #{stu_name}
+            </if>
+            <if test="stu_gender != null">
+                stu_gender = #{stu_gender}
+            </if>
+            <if test="stu_phone != null">
+                stu_phone = #{stu_phone}
+            </if>
+            <if test="class_no != null">
+                class_no = #{class_no}
+            </if>
+        </set>
+        <where>
+            <if test="stu_no != null">
+                stu_no = #{stu_no}
+            </if>
+        </where>
+    </update>
+
+    <update id="delete">
+        update t_student set status = 2 where stu_no = #{stu_no}
+    </update>
+
+    <select id="queryByPage" resultType="Student" statementType="STATEMENT">
+        select s.*,c.class_name from t_student s left join t_classes c on s.class_no = c.class_id ${where} limit ${index}, ${size}
+    </select>
+
+    <select id="queryCount" resultType="Integer">
+        select count(stu_no) from t_student
+    </select>
+
+    <select id="queryByNo" resultType="Student">
+        select s.stu_no, s.stu_idNumber, s.stu_name, s.stu_gender, s.stu_phone, c.class_name from t_student s left join t_classes c on s.class_no = c.class_id where stu_no = #{stu_no}
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--约束文件 --><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.iruier.dao.TestMapper">
+   <insert id="save" parameterType="Test" useGeneratedKeys="true" keyProperty="test_id">
+       insert into t_test(test_title, createTime, user_no, status) values(#{test_title}, #{createTime}, #{user_no}, #{status})
+   </insert>
+
+    <select id="queryByUser_no" resultType="cn.iruier.common.vo.TestListVo">
+        select t.*, SUM(score) score, td.createTime commitTime,round((UNIX_TIMESTAMP(td.createTime)-UNIX_TIMESTAMP(t.createTime))/60) time from t_test t left join t_testdetail td on t.id = td.test_id where t.user_no = #{user_no} group by t.id limit #{index}, #{size}
+    </select>
+
+    <select id="queryCountByNo" resultType="Integer">
+        select count(id) from t_test where user_no = #{user_no}
+    </select>
+
+    <update id="updateStatus">
+        update t_test set status = 2 where id = #{test_id}
+    </update>
+
+</mapper>

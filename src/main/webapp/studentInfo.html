@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+    <script type="text/javascript" src="static/js/studentInfo.js"></script>
+
+</head>
+<body>
+<div class="layui-container">
+    <form class="layui-form" action="studentQueryByNo.do">
+        <div class = "layui-container" >
+            <table class="layui-table">
+
+                <div class="layui-form-item">
+                    <label for="stu_no" class="layui-form-label">
+                        考生号
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="stu_no" name="stu_no"
+                               class="layui-input" disabled = disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="stu_name" class="layui-form-label">
+                        考生姓名
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="stu_name" name="stu_name"
+                               class="layui-input" disabled = disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="stu_gender" class="layui-form-label">
+                        考生性别
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="stu_gender" name="stu_gender"
+                               class="layui-input" disabled = disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="stu_idNumber" class="layui-form-label">
+                        身份证号
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="stu_idNumber" name="stu_idNumber"
+                               class="layui-input" disabled = disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="stu_phone" class="layui-form-label">
+                        手机号
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="stu_phone" name="stu_phone"
+                               class="layui-input" disabled = disabled>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="class_name" class="layui-form-label">
+                        班级名称
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="class_name" name="class_name"
+                               class="layui-input" disabled = disabled>
+                    </div>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+</body>
+</html>

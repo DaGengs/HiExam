@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--约束文件 --><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.iruier.dao.TeacherMapper">
+    <insert id="save" parameterType="Student">
+        insert into t_teacher(tch_no, tch_idNumber, tch_name, tch_gender, tch_phone, class_no, status) values(#{tch_no}, #{tch_idNumber}, #{tch_name}, #{tch_gender}, #{tch_phone}, #{class_no}, 1)
+    </insert>
+
+    <update id="update" parameterType="Teacher">
+        update t_teacher
+        <set>
+            <if test="tch_idNumber != null">
+                tch_idNumber = #{tch_idNumber}
+            </if>
+            <if test="tch_name != null">
+                tch_name = #{tch_name}
+            </if>
+            <if test="tch_gender != null">
+                tch_gender = #{tch_gender}
+            </if>
+            <if test="tch_phone != null">
+                tch_phone = #{tch_phone}
+            </if>
+            <if test="class_no != null">
+                class_no = #{class_no}
+            </if>
+        </set>
+        <where>
+            <if test="tch_no != null">
+                tch_no = #{tch_no}
+            </if>
+        </where>
+    </update>
+
+    <update id="delete">
+        update t_teacher set status = 2 where tch_no = #{tch_no}
+    </update>
+
+    <select id="queryByPage" resultType="Teacher">
+        select t.*,c.class_name from t_teacher t left join t_classes c on t.class_no = c.class_id limit #{index}, #{size}
+    </select>
+
+    <select id="queryCount" resultType="Integer">
+        select count(tch_no) from t_teacher
+    </select>
+</mapper>

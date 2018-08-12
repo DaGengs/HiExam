@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--约束文件 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.iruier.dao.SubjectMapper">
+    <insert id="save" parameterType="Subject">
+        insert into t_subject(subj_name, user_no, createTime, status, info) values(#{subj_name}, #{user_no}, #{createTime}, 1, #{info})
+    </insert>
+
+    <update id="update">
+        update t_subject set subj_name = #{subj_name}, createTime = #{createTime}, info = #{info} where subj_id = #{subj_id}
+    </update>
+
+    <update id="delete">
+        update t_subject set  status = 2 where subj_id = #{subj_id}
+    </update>
+
+    <select id="queryByPage" resultType="Subject">
+        select s.*,count(q.subj_id) tatol from t_subject s left join t_question q on s.subj_id = q.subj_id group by subj_id limit #{index}, #{size}
+    </select>
+
+    <select id="queryAll" resultType="Subject">
+        select subj_id, subj_name from t_subject where status = 1
+    </select>
+
+    <select id="queryCount" resultType="Integer">
+        select count(subj_id) from t_subject
+    </select>
+</mapper>

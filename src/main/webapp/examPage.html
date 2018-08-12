@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考试</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <link rel="stylesheet" href="lib/layui/css/layui.css">
+    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+    <script src="static/js/examPage.js"></script>
+   <!-- <script type="text/javascript">
+        document.oncontextmenu = function(){ return false; }
+        document.onselectstart = function(){ return false; }
+        document.oncopy = function(){ return false; }
+    </script>-->
+</head>
+<body>
+<div class="layui-container" style="margin-top: 20px">
+    <p><h1 align="center" id="title"></h1></p>
+    <hr/>
+    <p align="center" style="font-size: 15px" id="time"><b>考试时长：</b></p>
+    <br/>
+    <div id="timer" style="text-align: right;font-weight: bold;font-size: 25px; color: red"></div>
+    <br/>
+    <blockquote class="layui-elem-quote" id="type"></blockquote>
+    <div class="layui-form-item">
+    <form id="questionList" class="layui-form">
+        <div class="layui-form-item" style="text-align: center">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="commit">确认提交</button>
+        </div>
+    </form>
+    </div>
+    <div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+    <script src="static/js/question.js"></script>
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">试题管理</a>
+        <a>
+          <cite>新增试题</cite></a>
+      </span>
+    <a style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
+</div>
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题类型
+            </label>
+            <div class="layui-input-inline">
+                <select id="que_type" name="que_type"  lay-filter="que_type" class="valid">
+                    <option value="单选">单选</option>
+                    <option value="多选">多选</option>
+                    <option value="判断">判断</option>
+                    <option value="填空">填空</option>
+                    <option value="简答">简答</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题难度
+            </label>
+            <div class="layui-input-inline">
+                <select name="que_level">
+                    <option>简单</option>
+                    <option>常规</option>
+                    <option>较难</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题状态
+            </label>
+            <div class="layui-input-inline">
+                <select name="status">
+                    <option value="1">开放</option>
+                    <option value="2">不开放</option>
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">开放对考生可见，关闭对考生不可见</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>所属题库
+            </label>
+            <div class="layui-input-inline" style="width: 500px">
+                <select name="subj_id" id="subj_id">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label for="que_title" class="layui-form-label">
+                试题题干
+            </label>
+            <div class="layui-input-inline" style="width: 500px">
+                <textarea placeholder="请输入试题题干" id="que_title" name="que_title" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div  id="options">
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+            </label>
+
+            <button class="layui-btn layui-btn-normal" style="margin-left: 200px" lay-filter="add" lay-submit="">
+                提交
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

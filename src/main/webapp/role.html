@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>角色管理</title>
+    <link rel="stylesheet" href="lib/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" media="all"/>
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <script src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="lib/layui/layui.js"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+    <script src="static/js/role.js"></script>
+</head>
+<body>
+<script type="text/html" id="toolbar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="addMenu">分配权限</a>
+    <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="menu_nameTpl">
+    {{# if(d.menus == ""){ }}
+        暂无
+    {{# } else { }}
+        {{# for(var i = 0; i < d.menus.length; i++){ }}
+            {{ d.menus[i].menu_name }}
+        {{# } }}
+    {{# } }}
+</script>
+<script type="text/html" id="menu_urlTpl">
+    {{# if(d.menus == ""){ }}
+        暂无
+    {{# } else { }}
+        {{# for(var i = 0; i < d.menus.length; i++){ }}
+            {{ d.menus[i].menu_url }}
+        {{# } }}
+    {{# } }}
+</script>
+<script type="text/html" id="menu_iconTpl">
+    {{# if(d.menus == ""){ }}
+        暂无
+    {{# } else { }}
+        {{# for(var i = 0; i < d.menus.length; i++){ }}
+            <i class="layui-icon">{{ d.menus[i].menu_icon }}</i>
+        {{# } }}
+    {{# } }}
+</script>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">系统管理</a>
+        <a>
+          <cite>角色管理</cite></a>
+      </span>
+    <a style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
+</div>
+<div style="display: none;" id="addModel">
+    <form class="layui-form">
+        <div style="margin-top: 30px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="role_name" required lay-verify="required" placeholder="请输入角色名称" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div align="right" style="margin-top: 10px;margin-right: 20px">
+    <div class="layui-btn-group">
+        <a class="layui-btn layui-btn-primary" href="javascript:;" data-method="addRole" id="add">
+            <i class="layui-icon">&#xe654;</i>新增
+        </a>
+        <!--  <button class="layui-btn layui-btn-primary">
+              <i class="layui-icon">&#xe642;</i>修改
+          </button>
+          <button class="layui-btn layui-btn-primary">
+              <i class="layui-icon">&#xe640;</i>删除
+          </button>-->
+    </div>
+</div>
+<div style="display: none;" id="menuModel">
+    <form class="layui-form">
+        <div class="layui-form-item" style="margin-top: 20px">
+            <label class="layui-form-label">选择权限：</label>
+            <div class="layui-input-block" id="menuList">
+            </div>
+        </div>
+    </form>
+</div>
+    <table id="tbdata" lay-filter="tbop"></table>
+</body>
+</html>

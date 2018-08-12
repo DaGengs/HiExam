@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--约束文件 --><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.iruier.dao.ClassesMapper">
+    <insert id="save" parameterType="Classes">
+        insert into t_classes(class_name,createTime,user_no,status) values (#{class_name}, #{createTime},#{user_no},1)
+    </insert>
+
+    <update id="delete">
+       update t_classes set status = 2 where class_id = #{class_id}
+    </update>
+
+    <update id="update">
+        update t_classes set class_name = #{class_name} where class_id = #{class_id}
+    </update>
+
+    <select id="queryByPage" resultType="Classes">
+        select c.*, count(s.class_no) number from t_classes c left join t_student s on c.class_id = s.class_no group by c.class_id limit #{index}, #{size}
+    </select>
+
+    <select id="queryAll" resultType="Classes">
+        select * from t_classes where status = 1
+    </select>
+
+    <select id="queryCount" resultType="Integer">
+        select count(class_id) from t_classes
+    </select>
+
+</mapper>

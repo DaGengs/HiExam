@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机组卷</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <link rel="stylesheet" href="static/css/font.css">
+    <link rel="stylesheet" href="static/css/xadmin.css">
+    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/xadmin.js"></script>
+    <script src="static/js/paper.js"></script>
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">试卷管理</a>
+        <a>
+          <cite>创建试卷</cite></a>
+      </span>
+    <a style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
+</div>
+<div class="x-body">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试卷名称
+            </label>
+            <div class="layui-input-inline" style="width: 500px;">
+                <input type="text" name="title" id="title"  lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题状态
+            </label>
+            <div class="layui-input-inline">
+                <select name="status" id="status">
+                    <option value="1">开放</option>
+                    <option value="2">关闭</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>考试时长
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" name="time" id="time" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>所属题库
+            </label>
+            <div class="layui-input-inline" style="width: 500px">
+                <select name="subj_id" id="subj_id" lay-filter="queryNum">
+                </select>
+            </div>
+            <div style="display: none;color: red" class="layui-form-mid" id="number">&nbsp;&nbsp;&nbsp;ps:请参考该结果设置试题数量</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>开考时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="startTime" id="startTime" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label"><span class="x-red">*</span>结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="endTime" id="endTime" lay-verify="required"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend align="center">题型设置</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择题型
+            </label>
+            <div class="layui-input-inline">
+                <select id="que_type1" name="que_type1" class="valid">
+                    <option value="单选">单选</option>
+                    <option value="多选">多选</option>
+                    <option value="判断">判断</option>
+                    <option value="填空">填空</option>
+                    <option value="简答">简答</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择难度
+            </label>
+            <div class="layui-input-inline">
+                <select name="que_level1">
+                    <option>简单</option>
+                    <option>常规</option>
+                    <option>较难</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题数量
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="num1" id="num1" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>每题分值
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="score1" id="score1" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <a onclick='$(this).parent().parent().remove()'><i class='layui-icon' style='color: red;font-size: 25px;'> &#xe640;</i></a>
+            </label>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择题型
+            </label>
+            <div class="layui-input-inline">
+                <select id="que_type2" name="que_type2"  class="valid">
+                    <option value="单选">单选</option>
+                    <option value="多选">多选</option>
+                    <option value="判断">判断</option>
+                    <option value="填空">填空</option>
+                    <option value="简答">简答</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择难度
+            </label>
+            <div class="layui-input-inline">
+                <select name="que_level2">
+                    <option>简单</option>
+                    <option>常规</option>
+                    <option>较难</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题数量
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="num2" id="num2" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>每题分值
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="score2" id="score2" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <a onclick='$(this).parent().parent().remove()'><i class='layui-icon' style='color: red;font-size: 25px;'> &#xe640;</i></a>
+            </label>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择题型
+            </label>
+            <div class="layui-input-inline">
+                <select id="que_type3" name="que_type3" class="valid">
+                    <option value="单选">单选</option>
+                    <option value="多选">多选</option>
+                    <option value="判断">判断</option>
+                    <option value="填空">填空</option>
+                    <option value="简答">简答</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择难度
+            </label>
+            <div class="layui-input-inline">
+                <select name="que_level3">
+                    <option>简单</option>
+                    <option>常规</option>
+                    <option>较难</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题数量
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="num3" id="num3" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>每题分值
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="score3" id="score3" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <a onclick='$(this).parent().parent().remove()'><i class='layui-icon' style='color: red;font-size: 25px;'> &#xe640;</i></a>
+            </label>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择题型
+            </label>
+            <div class="layui-input-inline">
+                <select id="que_type4" name="que_type4" class="valid">
+                    <option value="单选">单选</option>
+                    <option value="多选">多选</option>
+                    <option value="判断">判断</option>
+                    <option value="填空">填空</option>
+                    <option value="简答">简答</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择难度
+            </label>
+            <div class="layui-input-inline">
+                <select name="que_level4">
+                    <option>简单</option>
+                    <option>常规</option>
+                    <option>较难</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题数量
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="num4" id="num4" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>每题分值
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="score4" id="score4" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <a onclick='$(this).parent().parent().remove()'><i class='layui-icon' style='color: red;font-size: 25px;'> &#xe640;</i></a>
+            </label>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择题型
+            </label>
+            <div class="layui-input-inline">
+                <select id="que_type5" name="que_type5" class="valid">
+                    <option value="单选">单选</option>
+                    <option value="多选">多选</option>
+                    <option value="判断">判断</option>
+                    <option value="填空">填空</option>
+                    <option value="简答">简答</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>选择难度
+            </label>
+            <div class="layui-input-inline">
+                <select name="que_level5">
+                    <option>简单</option>
+                    <option>常规</option>
+                    <option>较难</option>
+                </select>
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>试题数量
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="num5" id="num5" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <span class="x-red">*</span>每题分值
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="score5" id="score5" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label">
+                <a onclick='$(this).parent().parent().remove()'><i class='layui-icon' style='color: red;font-size: 25px;'> &#xe640;</i></a>
+            </label>
+        </div>
+        <br/>
+        <div class="layui-form-item" align="center">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="save">
+                立即提交
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

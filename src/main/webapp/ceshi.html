@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body onload="requestFullScreen()">
+<script>
+    //进入全屏
+    function requestFullScreen() {
+        var de = document.documentElement;
+        if (de.requestFullscreen) {
+            de.requestFullscreen();
+        } else if (de.mozRequestFullScreen) {
+            de.mozRequestFullScreen();
+        } else if (de.webkitRequestFullScreen) {
+            de.webkitRequestFullScreen();
+        }
+    }
+</script>
+<input type=BUTTON name=FullScreen value=点击打开全屏网页 onClick="window.open('http://www.baidu.com','big','fullscreen=yes')">
+</body>
+</html>
